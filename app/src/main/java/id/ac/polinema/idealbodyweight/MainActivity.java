@@ -8,17 +8,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import id.ac.polinema.idealbodyweight.fragments.AboutFragment;
+import id.ac.polinema.idealbodyweight.fragments.MenuFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity<menuFragment> extends AppCompatActivity implements
+		MenuFragment.OnFragmentInteractionListener {
+
 
 	// Deklarasikan atribut Fragment di sini
 	private AboutFragment aboutFragment;
+	private MenuFragment menuFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		aboutFragment = AboutFragment.newInstance("Nisa Hani");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.fragment_container, menuFragment)
+				.commit();
 	}
 
 	@Override
@@ -37,5 +44,15 @@ public class MainActivity extends AppCompatActivity {
 					.commit();
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onBrocaIndexButtonClicked() {
+
+	}
+
+	@Override
+	public void onBodyMassIndexButtonClicked() {
+
 	}
 }
